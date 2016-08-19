@@ -53,13 +53,13 @@ Check for repeated words.
 
 <!-- Definitions -->
 
-[travis-badge]: https://img.shields.io/travis/wooorm/.svg
+[travis-badge]: https://img.shields.io/travis/wooorm/retext-repeated-words.svg
 
-[travis]: https://travis-ci.org/wooorm/
+[travis]: https://travis-ci.org/wooorm/retext-repeated-words
 
-[codecov-badge]: https://img.shields.io/codecov/c/github/wooorm/.svg
+[codecov-badge]: https://img.shields.io/codecov/c/github/wooorm/retext-repeated-words.svg
 
-[codecov]: https://codecov.io/github/wooorm/
+[codecov]: https://codecov.io/github/wooorm/retext-repeated-words
 
 [npm-install]: https://docs.npmjs.com/cli/install
 
