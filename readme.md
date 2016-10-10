@@ -1,6 +1,6 @@
 # retext-repeated-words [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
 
-Check for ~~for~~ repeated words with [**retext**][retext].
+Check for ~~`for`~~ repeated words with [**retext**][retext].
 
 ## Installation
 
