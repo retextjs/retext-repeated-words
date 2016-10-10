@@ -29,49 +29,48 @@ var list = [
   'mau'
 ];
 
-/**
- * Check for for repeated words.
- */
+/* Check for for repeated words. */
 function repeatedWords() {
   return transformer;
+}
 
-  function transformer(tree, file) {
-    visit(tree, 'SentenceNode', function (parent) {
-      var children = parent.children;
-      var length = children.length;
-      var index = -1;
-      var child;
-      var before;
-      var value;
-      var node;
-      var prev;
-      var message;
+/* Check. */
+function transformer(tree, file) {
+  visit(tree, 'SentenceNode', function (parent) {
+    var children = parent.children;
+    var length = children.length;
+    var index = -1;
+    var child;
+    var before;
+    var value;
+    var node;
+    var prev;
+    var message;
 
-      while (++index < length) {
-        child = children[index];
+    while (++index < length) {
+      child = children[index];
 
-        if (is('WordNode', child)) {
-          value = toString(child);
-          node = child;
-        } else if (is('WhiteSpaceNode', child)) {
-          before = value;
-          prev = node;
-          value = node = null;
-        } else {
-          before = value = prev = node = null;
-        }
-
-        if (before && before === value && !ignore(value)) {
-          message = file.warn('Expected `' + value + '` once, not twice', {
-            start: prev.position.start,
-            end: node.position.end
-          });
-
-          message.ruleId = message.source = 'retext-repeated-words';
-        }
+      if (is('WordNode', child)) {
+        value = toString(child);
+        node = child;
+      } else if (is('WhiteSpaceNode', child)) {
+        before = value;
+        prev = node;
+        value = node = null;
+      } else {
+        before = value = prev = node = null;
       }
-    });
-  }
+
+      if (before && before === value && !ignore(value)) {
+        message = file.warn('Expected `' + value + '` once, not twice', {
+          start: prev.position.start,
+          end: node.position.end
+        });
+
+        message.ruleId = message.source = 'retext-repeated-words';
+      }
+    }
+  });
 }
 
 /* Check if `value`, a word which occurs twice, should be ignored. */
