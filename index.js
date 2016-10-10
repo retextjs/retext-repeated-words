@@ -25,7 +25,8 @@ var list = [
   'beep',
   'yadda',
   'sapiens',
-  'tse'
+  'tse',
+  'mau'
 ];
 
 /**

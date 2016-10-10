@@ -61,5 +61,11 @@ test('repeatedWords()', function (t) {
     'should ignore some valid repetitions'
   );
 
+  t.deepEqual(
+    retext().use(repeated).process('The Mau Mau Uprising, also known as the Mau Mau Rebellion, Mau Mau Revolt, or Kenya Emergency, was a military conflict that took place in British Kenya').messages,
+    [],
+    'should ignore some valid repetitions (mau)'
+  );
+
   t.end();
 });
