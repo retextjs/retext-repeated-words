@@ -1,19 +1,9 @@
-/**
- * @author Titus Wormer
- * @copyright 2016 Titus Wormer
- * @license MIT
- * @module
- * @fileoverview Test suite for `retext-repeated-words`.
- */
-
 'use strict';
 
-/* Dependencies. */
 var test = require('tape');
 var retext = require('retext');
 var repeated = require('./');
 
-/* Tests. */
 test('repeatedWords()', function (t) {
   t.deepEqual(
     retext().use(repeated).process([

@@ -1,19 +1,9 @@
-/**
- * @author Titus Wormer
- * @copyright 2016 Titus Wormer
- * @license MIT
- * @module retext-repeated-words
- * @fileoverview Check for for repeated words.
- */
-
 'use strict';
 
-/* Dependencies. */
 var visit = require('unist-util-visit');
 var is = require('unist-util-is');
 var toString = require('nlcst-to-string');
 
-/* Expose. */
 module.exports = repeatedWords;
 
 /* List of words which can legally occur twice. */
@@ -36,7 +26,9 @@ function repeatedWords() {
 
 /* Check. */
 function transformer(tree, file) {
-  visit(tree, 'SentenceNode', function (parent) {
+  visit(tree, 'SentenceNode', visitor);
+
+  function visitor(parent) {
     var children = parent.children;
     var length = children.length;
     var index = -1;
@@ -70,7 +62,7 @@ function transformer(tree, file) {
         message.ruleId = message.source = 'retext-repeated-words';
       }
     }
-  });
+  }
 }
 
 /* Check if `value`, a word which occurs twice, should be ignored. */
@@ -84,9 +76,8 @@ function ignore(value) {
   }
 
   head = value.charAt(0);
-  head = head === head.toUpperCase();
 
-  if (head) {
+  if (head === head.toUpperCase()) {
     /* D. D. will pop up with... */
     if (value.length === 2 && value.charAt(1) === '.') {
       return true;
