@@ -38,6 +38,8 @@ function transformer(tree, file) {
     var node;
     var prev;
     var message;
+    var position;
+    var start;
 
     while (++index < length) {
       child = children[index];
@@ -45,12 +47,14 @@ function transformer(tree, file) {
       if (is('WordNode', child)) {
         value = toString(child);
         node = child;
+        position = index;
       } else if (is('WhiteSpaceNode', child)) {
+        start = position;
         before = value;
         prev = node;
-        value = node = null;
+        value = node = position = null;
       } else {
-        before = value = prev = node = null;
+        before = value = prev = node = position = start = null;
       }
 
       if (before && before === value && !ignore(value)) {
@@ -60,6 +64,8 @@ function transformer(tree, file) {
         });
 
         message.ruleId = message.source = 'retext-repeated-words';
+        message.actual = toString(children.slice(start, position));
+        message.expected = [value];
       }
     }
   }

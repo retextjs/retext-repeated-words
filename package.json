@@ -21,7 +21,8 @@
   "bugs": "https://github.com/wooorm/retext-repeated-words/issues",
   "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "contributors": [
-    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
+    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+    "Sylvan Swierkosz <sswierkosz@gmail.com>"
   ],
   "devDependencies": {
     "browserify": "^14.1.0",
