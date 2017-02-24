@@ -60,6 +60,8 @@ function transformer(tree, file) {
         });
 
         message.ruleId = message.source = 'retext-repeated-words';
+        message.actual = value + ' ' + value;
+        message.expected = [value];
       }
     }
   }
