@@ -12,26 +12,39 @@ npm install retext-repeated-words
 
 ## Usage
 
-```javascript
-var retext = require('retext');
-var english = require('retext-english');
-var repeated = require('retext-repeated-words');
-var report = require('vfile-reporter');
-
-retext().use(english).use(repeated).process([
-  'Well, it it doesn’t have to to be. Like a fish in the',
-  'the sea.'
-].join('\n'), function (err, file) {
-  console.log(report(err || file));
-});
-```
-
-Yields:
+Say we have the following file, `example.txt`:
 
 ```text
-   1:7-1:12  warning  Expected `it` once, not twice   retext-repeated-words
-  1:26-1:31  warning  Expected `to` once, not twice   retext-repeated-words
-   1:51-2:4  warning  Expected `the` once, not twice  retext-repeated-words
+Well, it it doesn’t have to to be. Like a fish in the
+the sea.
+```
+
+And our script, `example.js`, looks like this:
+
+```javascript
+var vfile = require('to-vfile');
+var report = require('vfile-reporter');
+var unified = require('unified');
+var english = require('retext-english');
+var stringify = require('retext-stringify');
+var repeated = require('retext-repeated-words');
+
+unified()
+  .use(english)
+  .use(repeated)
+  .use(stringify)
+  .process(vfile.readSync('example.txt'), function (err, file) {
+    console.error(report(err || file));
+  });
+```
+
+Now, running `node example` yields:
+
+```text
+example.txt
+   1:7-1:12  warning  Expected `it` once, not twice   retext-repeated-words  retext-repeated-words
+  1:26-1:31  warning  Expected `to` once, not twice   retext-repeated-words  retext-repeated-words
+   1:51-2:4  warning  Expected `the` once, not twice  retext-repeated-words  retext-repeated-words
 
 ⚠ 3 warnings
 ```
