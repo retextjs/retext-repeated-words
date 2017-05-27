@@ -60,6 +60,13 @@ Check for repeated words.
 *   Doesn’t warn for initialisms (`D. D. will pop up with...`)
 *   Doesn’t warn for capitalised words (`Duran Duran...`)
 
+## Related
+
+*   [`retext-indefinite-article`](https://github.com/wooorm/retext-indefinite-article)
+    — Check if indefinite articles are used correctly
+*   [`retext-redundant-acronyms`](https://github.com/wooorm/retext-redundant-acronyms)
+    — Check for redundant acronyms
+
 ## License
 
 [MIT][license] © [Titus Wormer][author]
