@@ -9,6 +9,13 @@
     "words",
     "retext"
   ],
+  "repository": "wooorm/retext-repeated-words",
+  "bugs": "https://github.com/wooorm/retext-repeated-words/issues",
+  "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+    "Sylvan Swierkosz <sswierkosz@gmail.com>"
+  ],
   "files": [
     "index.js"
   ],
@@ -17,13 +24,6 @@
     "unist-util-is": "^2.0.0",
     "unist-util-visit": "^1.1.0"
   },
-  "repository": "https://github.com/wooorm/retext-repeated-words",
-  "bugs": "https://github.com/wooorm/retext-repeated-words/issues",
-  "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
-  "contributors": [
-    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
-    "Sylvan Swierkosz <sswierkosz@gmail.com>"
-  ],
   "devDependencies": {
     "browserify": "^14.1.0",
     "esmangle": "^1.0.1",
@@ -61,6 +61,8 @@
     ]
   },
   "remarkConfig": {
-    "plugins": ["preset-wooorm"]
+    "plugins": [
+      "preset-wooorm"
+    ]
   }
 }
