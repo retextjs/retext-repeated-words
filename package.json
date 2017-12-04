@@ -9,8 +9,8 @@
     "words",
     "retext"
   ],
-  "repository": "wooorm/retext-repeated-words",
-  "bugs": "https://github.com/wooorm/retext-repeated-words/issues",
+  "repository": "retextjs/retext-repeated-words",
+  "bugs": "https://github.com/retextjs/retext-repeated-words/issues",
   "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",

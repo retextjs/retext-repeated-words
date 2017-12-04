@@ -62,9 +62,9 @@ Check for repeated words.
 
 ## Related
 
-*   [`retext-indefinite-article`](https://github.com/wooorm/retext-indefinite-article)
+*   [`retext-indefinite-article`](https://github.com/retextjs/retext-indefinite-article)
     — Check if indefinite articles are used correctly
-*   [`retext-redundant-acronyms`](https://github.com/wooorm/retext-redundant-acronyms)
+*   [`retext-redundant-acronyms`](https://github.com/retextjs/retext-redundant-acronyms)
     — Check for redundant acronyms
 
 ## License
@@ -73,13 +73,13 @@ Check for repeated words.
 
 <!-- Definitions -->
 
-[travis-badge]: https://img.shields.io/travis/wooorm/retext-repeated-words.svg
+[travis-badge]: https://img.shields.io/travis/retextjs/retext-repeated-words.svg
 
-[travis]: https://travis-ci.org/wooorm/retext-repeated-words
+[travis]: https://travis-ci.org/retextjs/retext-repeated-words
 
-[codecov-badge]: https://img.shields.io/codecov/c/github/wooorm/retext-repeated-words.svg
+[codecov-badge]: https://img.shields.io/codecov/c/github/retextjs/retext-repeated-words.svg
 
-[codecov]: https://codecov.io/github/wooorm/retext-repeated-words
+[codecov]: https://codecov.io/github/retextjs/retext-repeated-words
 
 [npm-install]: https://docs.npmjs.com/cli/install
 
@@ -87,4 +87,4 @@ Check for repeated words.
 
 [author]: http://wooorm.com
 
-[retext]: https://github.com/wooorm/retext
+[retext]: https://github.com/retextjs/retext
