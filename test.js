@@ -2,7 +2,7 @@
 
 var test = require('tape');
 var retext = require('retext');
-var repeated = require('./');
+var repeated = require('.');
 
 test('repeatedWords()', function (t) {
   t.deepEqual(
