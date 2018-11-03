@@ -5,3 +5,4 @@ coverage/
 node_modules/
 retext-repeated-words.js
 retext-repeated-words.min.js
+yarn.lock
