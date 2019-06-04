@@ -1,16 +1,15 @@
 language: node_js
 node_js:
-- lts/boron
-- node
+  - lts/dubnium
+  - node
 after_script: bash <(curl -s https://codecov.io/bash)
 deploy:
   provider: releases
   skip_cleanup: true
   api_key:
-    secure: ZjtfcJt25AOj54Ga2rszZ9CYQk4tMJe2L8r7+CLJkMt58jYRJy6V/lahogXXpX6CYC5g5B3uMMtvu6u69i7R/y3vddlWyiBEQjSxHIxkpZoH4MK9EQ8DDDlD0uWNVuknr1P2FF76Ndzpp/57qZUScwDIdFLwTkbJfW+zoKNc8NmnEd+fmeiaXJR+xD7mZvfT2uP6Kc9PZPM1rfh9YONwbHMf1OxGiRI3jNakebE1j/spCH2CjJB65omQeUCo7n+g9+kWK8d/V4BXfq7t0tj9MUiJx1Z1pCG1sOJRGwIL6qvDxfIaKmKcNW0JP+THuVUCtsLJbFuCEI/uOW//JjoNlHeqwdGXuHPYki+pLJxfs4kiQ3r23iY9WUveq6u+ROrHBqn9NCTQAEGc7+Kaekda2EvOjvzx0k0tcSGR2XcQn/FI0pumdLqb7R4qzm6yiPjR4QSUYykP97pKBcnHPAF0QO9PvR/8TUijGf66uinfmEIH6NQ4mWxVAnRqWjnnK5kPwuj86r/XHayRHZ7JtpCnmwsbWaAx8/I1en0OxRQErXJPelzcyHMsdggrX4LA2KiwFIEeGJbNSvEH3WSAMkvC7wDisLnRvy4CllwqbRZ1wVNJYjhlvl2qcKozfYDxTx8Lpxql6gPyBqBkW/8yYx7nzq3HjBrGubo06oDN0pIqfzk=
+    secure: sdG1D8AoKINfEQTe/kzZK/VEP7nkGaF+iS6kR0j8mgAQCzN4BytqIKdPS8x0KjZaXZ9K0OfgyMEkflf+sFd1sAjRqsO0DcXOCaAKTrxtRp2g7Y1DTYbEt9+GuFOieQZII2DrovLFRQPpk/LYFQ8zFVU8tIp7KhJol+LXa3uI/3p8Gd9S6Zn7o0dO62KFaXLvQfh0zAHMecvtW2OXAK8halLHABvDF9ytWPPXkdWBJBZYUfJ9oDIRgqQOE5PNrlgI6nsAz/7YHT9XEy6kqrl95mHgSQkgQNDbSje8hlFDMl8zFc2hSUjzIb5I8eQstEOOWR/cSk5BsoKHsjI0vkKSHtS+WkU8U1wsfiH/XsCdxnP89ncI+Ux83/Gz0oMXuOaW7/OOO5tZXTiDRLstKQgIuyfd1jJzGDX5uk+Md22fZGGpSFZxDRFQB83MO7cflBh/h8jGyaAd8XrBq1sZjeoT/WnvGY0bGugbJxfEmeX1aC41aO+3p/lKue5y4L01lmDM3E2i5VOzgt0j7kn5AQi9uF9ersNb4P0ghxNCg7ZqGOounc6dSuYXNJHdy9c7kKedacMCHrLAslzuKHi9E1ZlO9HcAO1vo2W5rUPX5r+YzI10K3PO1tM5YfOP0ZmW1cBmUjsPzZyxm662E628k5aAimqfeXEo9m5x6oPl5tnDc2k=
   file:
-    - "retext-repeated-words.js"
-    - "retext-repeated-words.min.js"
+    - 'retext-repeated-words.js'
+    - 'retext-repeated-words.min.js'
   on:
     tags: true
-    node: '9.0'
