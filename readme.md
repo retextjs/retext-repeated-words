@@ -1,27 +1,35 @@
-# retext-repeated-words [![Build][build-badge]][build] [![Coverage][coverage-badge]][coverage] [![Downloads][downloads-badge]][downloads] [![Chat][chat-badge]][chat]
+# retext-repeated-words
 
-Check for ~~`for`~~ repeated words with [**retext**][retext].
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][size-badge]][size]
+[![Sponsors][sponsors-badge]][collective]
+[![Backers][backers-badge]][collective]
+[![Chat][chat-badge]][chat]
 
-## Installation
+[**retext**][retext] plugin to check for ~~`for`~~ repeated words.
 
-[npm][npm-install]:
+## Install
 
-```bash
+[npm][]:
+
+```sh
 npm install retext-repeated-words
 ```
 
-## Usage
+## Use
 
 Say we have the following file, `example.txt`:
 
-```text
+```txt
 Well, it it doesn’t have to to be. Like a fish in the
 the sea.
 ```
 
-And our script, `example.js`, looks like this:
+…and our script, `example.js`, looks like this:
 
-```javascript
+```js
 var vfile = require('to-vfile')
 var report = require('vfile-reporter')
 var unified = require('unified')
@@ -40,7 +48,7 @@ unified()
 
 Now, running `node example` yields:
 
-```text
+```txt
 example.txt
    1:7-1:12  warning  Expected `it` once, not twice   retext-repeated-words  retext-repeated-words
   1:26-1:31  warning  Expected `to` once, not twice   retext-repeated-words  retext-repeated-words
@@ -55,10 +63,10 @@ example.txt
 
 Check for repeated words.
 
-*   Doesn’t warn for some words which *do* occur twice (`the best
-    exhibition they had had since`)
-*   Doesn’t warn for initialisms (`D. D. will pop up with...`)
-*   Doesn’t warn for capitalised words (`Duran Duran...`)
+*   Doesn’t warn for some words which *do* occur twice (`the best exhibition
+    they had had since`)
+*   Doesn’t warn for initialisms (`D. D. will pop up with…`)
+*   Doesn’t warn for capitalised words (`Duran Duran…`)
 
 ## Related
 
@@ -69,11 +77,13 @@ Check for repeated words.
 
 ## Contribute
 
-See [`contributing.md` in `retextjs/retext`][contribute] for ways to get
-started.
+See [`contributing.md`][contributing] in [`retextjs/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
 
-This organisation has a [Code of Conduct][coc].  By interacting with this
-repository, organisation, or community you agree to abide by its terms.
+This project has a [Code of Conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
 
 ## License
 
@@ -93,18 +103,32 @@ repository, organisation, or community you agree to abide by its terms.
 
 [downloads]: https://www.npmjs.com/package/retext-repeated-words
 
+[size-badge]: https://img.shields.io/bundlephobia/minzip/retext-repeated-words.svg
+
+[size]: https://bundlephobia.com/result?p=retext-repeated-words
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[collective]: https://opencollective.com/unified
+
 [chat-badge]: https://img.shields.io/badge/join%20the%20community-on%20spectrum-7b16ff.svg
 
 [chat]: https://spectrum.chat/unified/retext
 
-[npm-install]: https://docs.npmjs.com/cli/install
+[npm]: https://docs.npmjs.com/cli/install
+
+[health]: https://github.com/retextjs/.github
+
+[contributing]: https://github.com/retextjs/.github/blob/master/contributing.md
+
+[support]: https://github.com/retextjs/.github/blob/master/support.md
+
+[coc]: https://github.com/retextjs/.github/blob/master/code-of-conduct.md
 
 [license]: license
 
 [author]: https://wooorm.com
 
 [retext]: https://github.com/retextjs/retext
-
-[contribute]: https://github.com/retextjs/retext/blob/master/contributing.md
-
-[coc]: https://github.com/retextjs/retext/blob/master/code-of-conduct.md
