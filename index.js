@@ -1,10 +1,13 @@
 'use strict'
 
 var visit = require('unist-util-visit')
-var is = require('unist-util-is')
+var convert = require('unist-util-is/convert')
 var toString = require('nlcst-to-string')
 
 module.exports = repeatedWords
+
+var word = convert('WordNode')
+var whiteSpace = convert('WhiteSpaceNode')
 
 // List of words which can legally occur twice.
 var list = [
@@ -43,11 +46,11 @@ function transformer(tree, file) {
     while (++index < length) {
       child = children[index]
 
-      if (is('WordNode', child)) {
+      if (word(child)) {
         value = toString(child)
         node = child
         position = index
-      } else if (is('WhiteSpaceNode', child)) {
+      } else if (whiteSpace(child)) {
         start = position
         before = value
         prev = node
