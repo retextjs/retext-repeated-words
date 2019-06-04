@@ -70,6 +70,8 @@ function transformer(tree, file) {
         message.expected = [value]
       }
     }
+
+    return visit.SKIP
   }
 }
 
