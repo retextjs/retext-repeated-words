@@ -1,13 +1,15 @@
 {
   "name": "retext-repeated-words",
   "version": "1.2.2",
-  "description": "Check for for repeated words",
+  "description": "retext plugin to check for for repeated words",
   "license": "MIT",
   "keywords": [
+    "unified",
+    "retext",
+    "plugin",
     "repeated",
     "repetition",
-    "words",
-    "retext"
+    "words"
   ],
   "repository": "retextjs/retext-repeated-words",
   "bugs": "https://github.com/retextjs/retext-repeated-words/issues",
