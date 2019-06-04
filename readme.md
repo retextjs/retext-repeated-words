@@ -55,7 +55,7 @@ example.txt
 
 Check for repeated words.
 
-*   Doesn’t warn for some words which _do_ occur twice (`the best
+*   Doesn’t warn for some words which *do* occur twice (`the best
     exhibition they had had since`)
 *   Doesn’t warn for initialisms (`D. D. will pop up with...`)
 *   Doesn’t warn for capitalised words (`Duran Duran...`)
