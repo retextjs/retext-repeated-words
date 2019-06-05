@@ -60,7 +60,7 @@ function transformer(tree, file) {
       }
 
       if (before && before === value && !ignore(value)) {
-        message = file.warn('Expected `' + value + '` once, not twice', {
+        message = file.message('Expected `' + value + '` once, not twice', {
           start: prev.position.start,
           end: node.position.end
         })
