@@ -8,11 +8,33 @@ test('repeatedWords()', function(t) {
   t.deepEqual(
     retext()
       .use(repeated)
+      .processSync('Well, it it doesn’t have to be.').messages,
+    [
+      {
+        message: 'Expected `it` once, not twice',
+        name: '1:7-1:12',
+        reason: 'Expected `it` once, not twice',
+        line: 1,
+        column: 7,
+        location: {
+          start: {line: 1, column: 7, offset: 6},
+          end: {line: 1, column: 12, offset: 11}
+        },
+        source: 'retext-repeated-words',
+        ruleId: 'it',
+        fatal: false,
+        actual: 'it it',
+        expected: ['it']
+      }
+    ],
+    'should emit messages'
+  )
+
+  t.deepEqual(
+    retext()
+      .use(repeated)
       .processSync(
-        [
-          'Well, it it doesn’t have to to be. Like a fish in the',
-          'the sea.'
-        ].join('\n')
+        'Well, it it doesn’t have to to be. Like a fish in the\nthe sea.'
       )
       .messages.map(String),
     [
@@ -26,7 +48,7 @@ test('repeatedWords()', function(t) {
   t.deepEqual(
     retext()
       .use(repeated)
-      .processSync(['LIKE A FISH IN THE', 'THE SEA.'].join('\n'))
+      .processSync('LIKE A FISH IN THE\nTHE SEA.')
       .messages.map(String),
     ['1:16-2:4: Expected `THE` once, not twice'],
     'should catch repeated words when uppercase'

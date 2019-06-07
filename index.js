@@ -6,10 +6,12 @@ var toString = require('nlcst-to-string')
 
 module.exports = repeatedWords
 
+var source = 'retext-repeated-words'
+
 var word = convert('WordNode')
 var whiteSpace = convert('WhiteSpaceNode')
 
-// List of words which can legally occur twice.
+// List of words that can legally occur twice.
 var list = [
   'had',
   'that',
@@ -60,14 +62,17 @@ function transformer(tree, file) {
       }
 
       if (before && before === value && !ignore(value)) {
-        message = file.message('Expected `' + value + '` once, not twice', {
-          start: prev.position.start,
-          end: node.position.end
-        })
+        message = file.message(
+          'Expected `' + value + '` once, not twice',
+          {
+            start: prev.position.start,
+            end: node.position.end
+          },
+          [source, value.toLowerCase().replace(/\W+/g, '-')].join(':')
+        )
 
-        message.ruleId = message.source = 'retext-repeated-words'
-        message.actual = toString(children.slice(start, position))
-        message.expected = [value]
+        message.actual = toString(children.slice(start, position + 1))
+        message.expected = [toString(prev)]
       }
     }
 
@@ -80,7 +85,7 @@ function ignore(value) {
   var head
   var tail
 
-  // ...the most heartening exhibition they had had since...
+  // …the most heartening exhibition they had had since…
   if (list.indexOf(lower(value)) !== -1) {
     return true
   }
