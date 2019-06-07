@@ -50,9 +50,9 @@ Now, running `node example` yields:
 
 ```txt
 example.txt
-   1:7-1:12  warning  Expected `it` once, not twice   retext-repeated-words  retext-repeated-words
-  1:26-1:31  warning  Expected `to` once, not twice   retext-repeated-words  retext-repeated-words
-   1:51-2:4  warning  Expected `the` once, not twice  retext-repeated-words  retext-repeated-words
+   1:7-1:12  warning  Expected `it` once, not twice   it   retext-repeated-words
+  1:26-1:31  warning  Expected `to` once, not twice   to   retext-repeated-words
+   1:51-2:4  warning  Expected `the` once, not twice  the  retext-repeated-words
 
 ⚠ 3 warnings
 ```
@@ -67,6 +67,27 @@ Check for repeated words.
     they had had since`)
 *   Doesn’t warn for initialisms (`D. D. will pop up with…`)
 *   Doesn’t warn for capitalised words (`Duran Duran…`)
+
+### Messages
+
+Each message is emitted as a [`VFileMessage`][message] on `file`, with the
+following fields:
+
+###### `message.source`
+
+Name of this plugin (`'retext-repeated-words'`).
+
+###### `message.ruleId`
+
+Repeated word (normalized) (`string`, such as `the`).
+
+###### `message.actual`
+
+Current not ok phrase (`string`).
+
+###### `message.expected`
+
+List of suggestions (`Array.<string>`, such as `['the']`).
 
 ## Related
 
@@ -132,3 +153,5 @@ abide by its terms.
 [author]: https://wooorm.com
 
 [retext]: https://github.com/retextjs/retext
+
+[message]: https://github.com/vfile/vfile-message
