@@ -29,7 +29,7 @@
   ],
   "dependencies": {
     "nlcst-to-string": "^2.0.0",
-    "unist-util-is": "^3.0.0",
+    "unist-util-is": "^4.0.0",
     "unist-util-visit": "^1.1.0"
   },
   "devDependencies": {
