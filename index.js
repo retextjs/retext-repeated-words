@@ -40,7 +40,7 @@ function transformer(tree, file) {
     var before
     var value
     var node
-    var prev
+    var previous
     var message
     var position
     var start
@@ -55,24 +55,24 @@ function transformer(tree, file) {
       } else if (whiteSpace(child)) {
         start = position
         before = value
-        prev = node
+        previous = node
         value = node = position = null
       } else {
-        before = value = prev = node = position = start = null
+        before = value = previous = node = position = start = null
       }
 
       if (before && before === value && !ignore(value)) {
         message = file.message(
           'Expected `' + value + '` once, not twice',
           {
-            start: prev.position.start,
+            start: previous.position.start,
             end: node.position.end
           },
           [source, value.toLowerCase().replace(/\W+/g, '-')].join(':')
         )
 
         message.actual = toString(children.slice(start, position + 1))
-        message.expected = [toString(prev)]
+        message.expected = [toString(previous)]
       }
     }
 
