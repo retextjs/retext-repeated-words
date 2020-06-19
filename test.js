@@ -4,11 +4,14 @@ var test = require('tape')
 var retext = require('retext')
 var repeated = require('.')
 
-test('repeatedWords()', function(t) {
+test('repeatedWords()', function (t) {
   t.deepEqual(
-    retext()
-      .use(repeated)
-      .processSync('Well, it it doesn’t have to be.').messages,
+    JSON.parse(
+      JSON.stringify(
+        retext().use(repeated).processSync('Well, it it doesn’t have to be.')
+          .messages
+      )
+    ),
     [
       {
         message: 'Expected `it` once, not twice',
@@ -55,25 +58,19 @@ test('repeatedWords()', function(t) {
   )
 
   t.deepEqual(
-    retext()
-      .use(repeated)
-      .processSync('Duran Duran is awesome.').messages,
+    retext().use(repeated).processSync('Duran Duran is awesome.').messages,
     [],
     'should ignore sentence cased words'
   )
 
   t.deepEqual(
-    retext()
-      .use(repeated)
-      .processSync('D. D. will pop up with.').messages,
+    retext().use(repeated).processSync('D. D. will pop up with.').messages,
     [],
     'should ignore initialisms'
   )
 
   t.deepEqual(
-    retext()
-      .use(repeated)
-      .processSync('DURAN Duran').messages,
+    retext().use(repeated).processSync('DURAN Duran').messages,
     [],
     'should ignore differently cases words'
   )

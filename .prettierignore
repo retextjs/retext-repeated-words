@@ -1,3 +1,5 @@
 coverage/
 retext-repeated-words.js
 retext-repeated-words.min.js
+*.json
+*.md
