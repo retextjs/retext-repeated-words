@@ -59,10 +59,10 @@ example.txt
 
 ## Use on Multiple Files
 
-Say we want to run `retext-repeated-words` on an entire folder of markdown files.
-Our script, `example.js`, looks like this:
+Say we want to run `retext-repeated-words` on an entire folder of markdown
+files. Our script, `example.js`, looks like this:
 
-```
+```js
 const path = require('path');
 const vfileGlob = require('vfile-glob');
 const unified = require('unified');
