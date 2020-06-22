@@ -57,6 +57,48 @@ example.txt
 ⚠ 3 warnings
 ```
 
+## Use on Multiple Files
+
+Say we want to run `retext-repeated-words` on an entire folder of markdown files.
+Our script, `example.js`, looks like this:
+
+```
+const path = require('path');
+const vfileGlob = require('vfile-glob');
+const unified = require('unified');
+const english = require('retext-english');
+const repeated = require('retext-repeated-words');
+const stringify = require('retext-stringify');
+const report = require('vfile-reporter');
+
+const rootDir = path.join(__dirname, '..'); // The root directory of the project
+vfileGlob(`${rootDir}/**`, { // Match every file matching this glob
+  ignore: [ // Add specific ignore globs here relating to your particular directory structure
+    `${rootDir}/.git/**`,
+    `${rootDir}/img/**`,
+    `${rootDir}/misc/*.pdf`,
+    `${rootDir}/linters/node_modules/**`,
+    `${rootDir}/linters/package-lock.json`,
+    `${rootDir}/LICENSE`,
+  ],
+}).subscribe({
+  next(file) {
+    unified()
+    .use(english)
+    .use(repeated)
+    .use(stringify)
+    .process(file, function(err, file) {
+      const output = report(err || file, {
+        quiet: true, // Only output on a warning or an error
+      }).trim();
+      if (output) {
+        console.error(output);
+      }
+    })
+  },
+});
+```
+
 ## API
 
 ### `retext().use(repeatedWords)`
