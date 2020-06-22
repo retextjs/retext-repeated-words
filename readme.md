@@ -60,7 +60,7 @@ example.txt
 ## Use on Multiple Files
 
 Say we want to run `retext-repeated-words` on an entire folder of markdown
-files. Our script, `example.js`, looks like this:
+files.  Our script, `example.js`, looks like this:
 
 ```js
 const path = require('path');
