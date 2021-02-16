@@ -112,9 +112,9 @@ abide by its terms.
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/retextjs/retext-repeated-words.svg
+[build-badge]: https://github.com/retextjs/retext-repeated-words/workflows/main/badge.svg
 
-[build]: https://travis-ci.org/retextjs/retext-repeated-words
+[build]: https://github.com/retextjs/retext-repeated-words/actions
 
 [coverage-badge]: https://img.shields.io/codecov/c/github/retextjs/retext-repeated-words.svg
 
