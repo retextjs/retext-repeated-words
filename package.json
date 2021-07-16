@@ -33,6 +33,7 @@
   "dependencies": {
     "nlcst-to-string": "^3.0.0",
     "unist-util-is": "^5.0.0",
+    "unist-util-position": "^4.0.0",
     "unist-util-visit": "^3.0.0"
   },
   "devDependencies": {
@@ -59,14 +60,7 @@
     "trailingComma": "none"
   },
   "xo": {
-    "prettier": true,
-    "rules": {
-      "no-var": "off",
-      "prefer-arrow-callback": "off",
-      "unicorn/no-array-callback-reference": "off",
-      "unicorn/prefer-includes": "off",
-      "no-multi-assign": "off"
-    }
+    "prettier": true
   },
   "remarkConfig": {
     "plugins": [

@@ -1,14 +1,15 @@
 import {toString} from 'nlcst-to-string'
 import {convert} from 'unist-util-is'
 import {visit} from 'unist-util-visit'
+import {pointStart, pointEnd} from 'unist-util-position'
 
-var source = 'retext-repeated-words'
+const source = 'retext-repeated-words'
 
-var word = convert('WordNode')
-var whiteSpace = convert('WhiteSpaceNode')
+const word = convert('WordNode')
+const whiteSpace = convert('WhiteSpaceNode')
 
 // List of words that can legally occur twice.
-var list = [
+const list = new Set([
   'had',
   'that',
   'can',
@@ -18,93 +19,75 @@ var list = [
   'sapiens',
   'tse',
   'mau'
-]
+])
 
 // Check for for repeated words.
 export default function retextRepeatedWords() {
-  return transformer
-}
+  return (tree, file) => {
+    visit(tree, 'SentenceNode', (parent) => {
+      let index = -1
+      let previous
+      let current
 
-function transformer(tree, file) {
-  visit(tree, 'SentenceNode', visitor)
+      while (++index < parent.children.length) {
+        const child = parent.children[index]
 
-  function visitor(parent) {
-    var children = parent.children
-    var length = children.length
-    var index = -1
-    var child
-    var before
-    var value
-    var node
-    var previous
-    var message
-    var position
-    var start
+        if (word(child)) {
+          const value = toString(child)
 
-    while (++index < length) {
-      child = children[index]
+          current = {child, index, value}
 
-      if (word(child)) {
-        value = toString(child)
-        node = child
-        position = index
-      } else if (whiteSpace(child)) {
-        start = position
-        before = value
-        previous = node
-        value = node = position = null
-      } else {
-        before = value = previous = node = position = start = null
+          if (previous && previous.value === value && !ignore(value)) {
+            Object.assign(
+              file.message(
+                'Expected `' + value + '` once, not twice',
+                {start: pointStart(previous.child), end: pointEnd(child)},
+                [source, value.toLowerCase().replace(/\W+/g, '-')].join(':')
+              ),
+              {
+                actual: toString(
+                  parent.children.slice(previous.index, index + 1)
+                ),
+                expected: [value]
+              }
+            )
+          }
+        } else if (whiteSpace(child)) {
+          previous = current
+          current = undefined
+        } else {
+          previous = undefined
+          current = undefined
+        }
       }
 
-      if (before && before === value && !ignore(value)) {
-        message = file.message(
-          'Expected `' + value + '` once, not twice',
-          {
-            start: previous.position.start,
-            end: node.position.end
-          },
-          [source, value.toLowerCase().replace(/\W+/g, '-')].join(':')
-        )
-
-        message.actual = toString(children.slice(start, position + 1))
-        message.expected = [toString(previous)]
-      }
-    }
-
-    return visit.SKIP
+      return visit.SKIP
+    })
   }
 }
 
 // Check if `value`, a word which occurs twice, should be ignored.
 function ignore(value) {
-  var head
-  var tail
-
   // …the most heartening exhibition they had had since…
-  if (list.indexOf(lower(value)) !== -1) {
+  if (list.has(value.toLowerCase())) {
     return true
   }
 
-  head = value.charAt(0)
+  const head = value.charAt(0)
 
   if (head === head.toUpperCase()) {
-    // D. D. will pop up with...
+    // D. D. will pop up with…
     if (value.length === 2 && value.charAt(1) === '.') {
       return true
     }
 
-    tail = value.slice(1)
+    const tail = value.slice(1)
 
-    // Duran Duran... Bella Bella...
-    if (tail === lower(tail)) {
+    // Duran Duran… Bella Bella…
+    if (tail === tail.toLowerCase()) {
       return true
     }
   }
 
   return false
-}
-
-function lower(value) {
-  return value.toLowerCase()
 }
