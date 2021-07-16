@@ -1,5 +1,5 @@
 import test from 'tape'
-import retext from 'retext'
+import {retext} from 'retext'
 import repeated from './index.js'
 
 test('repeatedWords()', function (t) {
@@ -12,17 +12,17 @@ test('repeatedWords()', function (t) {
     ),
     [
       {
-        message: 'Expected `it` once, not twice',
         name: '1:7-1:12',
+        message: 'Expected `it` once, not twice',
         reason: 'Expected `it` once, not twice',
         line: 1,
         column: 7,
-        location: {
+        source: 'retext-repeated-words',
+        ruleId: 'it',
+        position: {
           start: {line: 1, column: 7, offset: 6},
           end: {line: 1, column: 12, offset: 11}
         },
-        source: 'retext-repeated-words',
-        ruleId: 'it',
         fatal: false,
         actual: 'it it',
         expected: ['it']
