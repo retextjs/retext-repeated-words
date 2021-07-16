@@ -1,8 +1,6 @@
-'use strict'
-
-var test = require('tape')
-var retext = require('retext')
-var repeated = require('.')
+import test from 'tape'
+import retext from 'retext'
+import repeated from './index.js'
 
 test('repeatedWords()', function (t) {
   t.deepEqual(

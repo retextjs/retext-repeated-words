@@ -1,10 +1,6 @@
-'use strict'
-
-var visit = require('unist-util-visit')
-var convert = require('unist-util-is/convert')
-var toString = require('nlcst-to-string')
-
-module.exports = repeatedWords
+import visit from 'unist-util-visit'
+import convert from 'unist-util-is/convert.js'
+import toString from 'nlcst-to-string'
 
 var source = 'retext-repeated-words'
 
@@ -25,7 +21,7 @@ var list = [
 ]
 
 // Check for for repeated words.
-function repeatedWords() {
+export default function retextRepeatedWords() {
   return transformer
 }
 
