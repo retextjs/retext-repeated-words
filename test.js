@@ -2,7 +2,7 @@ import test from 'tape'
 import {retext} from 'retext'
 import retextRepeatedWords from './index.js'
 
-test('repeatedWords()', (t) => {
+test('retextRepeatedWords()', (t) => {
   t.deepEqual(
     JSON.parse(
       JSON.stringify(

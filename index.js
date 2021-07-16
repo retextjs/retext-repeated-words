@@ -1,6 +1,12 @@
+/**
+ * @typedef {import('unist').Node} Node
+ * @typedef {import('unist').Parent} Parent
+ * @typedef {import('unified').Plugin<[]>} Plugin
+ */
+
 import {toString} from 'nlcst-to-string'
 import {convert} from 'unist-util-is'
-import {visit} from 'unist-util-visit'
+import {visit, SKIP} from 'unist-util-visit'
 import {pointStart, pointEnd} from 'unist-util-position'
 
 const source = 'retext-repeated-words'
@@ -21,12 +27,27 @@ const list = new Set([
   'mau'
 ])
 
-// Check for for repeated words.
+/**
+ * A retext plugin to check for for repeated words.
+ *
+ * * Doesn’t warn for some words which *do* occur twice (`the best exhibition
+ *   they had had since`)
+ * * Doesn’t warn for initialisms (`D. D. will pop up with…`)
+ * * Doesn’t warn for capitalised words (`Duran Duran…`)
+ *
+ * @type {Plugin}
+ */
 export default function retextRepeatedWords() {
+  /**
+   * @typedef {{value: string, child: Node, index: number}} Info
+   */
+
   return (tree, file) => {
-    visit(tree, 'SentenceNode', (parent) => {
+    visit(tree, 'SentenceNode', (/** @type {Parent} */ parent) => {
       let index = -1
+      /** @type {Info|undefined} */
       let previous
+      /** @type {Info|undefined} */
       let current
 
       while (++index < parent.children.length) {
@@ -37,7 +58,11 @@ export default function retextRepeatedWords() {
 
           current = {child, index, value}
 
-          if (previous && previous.value === value && !ignore(value)) {
+          if (
+            previous &&
+            previous.value.toLowerCase() === value.toLowerCase() &&
+            !ignore(value)
+          ) {
             Object.assign(
               file.message(
                 'Expected `' + value + '` once, not twice',
@@ -61,12 +86,17 @@ export default function retextRepeatedWords() {
         }
       }
 
-      return visit.SKIP
+      return SKIP
     })
   }
 }
 
-// Check if `value`, a word which occurs twice, should be ignored.
+/**
+ * Check if `value`, a word which occurs twice, should be ignored.
+ *
+ * @param {string} value
+ * @returns {boolean}
+ */
 function ignore(value) {
   // …the most heartening exhibition they had had since…
   if (list.has(value.toLowerCase())) {
