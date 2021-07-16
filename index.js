@@ -1,9 +1,3 @@
-/**
- * @typedef {import('unist').Node} Node
- * @typedef {import('unist').Parent} Parent
- * @typedef {import('unified').Plugin<[]>} Plugin
- */
-
 import {toString} from 'nlcst-to-string'
 import {convert} from 'unist-util-is'
 import {visit, SKIP} from 'unist-util-visit'
@@ -35,10 +29,12 @@ const list = new Set([
  * * Doesn’t warn for initialisms (`D. D. will pop up with…`)
  * * Doesn’t warn for capitalised words (`Duran Duran…`)
  *
- * @type {Plugin}
+ * @type {import('unified').Plugin<[]>}
  */
 export default function retextRepeatedWords() {
   /**
+   * @typedef {import('unist').Node} Node
+   * @typedef {import('unist').Parent} Parent
    * @typedef {{value: string, child: Node, index: number}} Info
    */
 
