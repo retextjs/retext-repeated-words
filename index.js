@@ -1,6 +1,6 @@
-import visit from 'unist-util-visit'
-import convert from 'unist-util-is/convert.js'
-import toString from 'nlcst-to-string'
+import {toString} from 'nlcst-to-string'
+import {convert} from 'unist-util-is'
+import {visit} from 'unist-util-visit'
 
 var source = 'retext-repeated-words'
 
