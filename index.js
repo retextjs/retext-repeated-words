@@ -1,12 +1,14 @@
+/**
+ * @typedef {import('nlcst').Root} Root
+ * @typedef {import('nlcst').SentenceContent} SentenceContent
+ * @typedef {{value: string, child: SentenceContent, index: number}} Info
+ */
+
 import {toString} from 'nlcst-to-string'
-import {convert} from 'unist-util-is'
 import {visit, SKIP} from 'unist-util-visit'
 import {pointStart, pointEnd} from 'unist-util-position'
 
 const source = 'retext-repeated-words'
-
-const word = convert('WordNode')
-const whiteSpace = convert('WhiteSpaceNode')
 
 // List of words that can legally occur twice.
 const list = new Set([
@@ -29,17 +31,11 @@ const list = new Set([
  * * Doesn’t warn for initialisms (`D. D. will pop up with…`)
  * * Doesn’t warn for capitalised words (`Duran Duran…`)
  *
- * @type {import('unified').Plugin<[]>}
+ * @type {import('unified').Plugin<[], Root>}
  */
 export default function retextRepeatedWords() {
-  /**
-   * @typedef {import('unist').Node} Node
-   * @typedef {import('unist').Parent} Parent
-   * @typedef {{value: string, child: Node, index: number}} Info
-   */
-
   return (tree, file) => {
-    visit(tree, 'SentenceNode', (/** @type {Parent} */ parent) => {
+    visit(tree, 'SentenceNode', (parent) => {
       let index = -1
       /** @type {Info|undefined} */
       let previous
@@ -49,7 +45,7 @@ export default function retextRepeatedWords() {
       while (++index < parent.children.length) {
         const child = parent.children[index]
 
-        if (word(child)) {
+        if (child.type === 'WordNode') {
           const value = toString(child)
 
           current = {child, index, value}
@@ -73,7 +69,7 @@ export default function retextRepeatedWords() {
               }
             )
           }
-        } else if (whiteSpace(child)) {
+        } else if (child.type === 'WhiteSpaceNode') {
           previous = current
           current = undefined
         } else {

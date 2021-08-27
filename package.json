@@ -33,9 +33,9 @@
     "index.js"
   ],
   "dependencies": {
+    "@types/nlcst": "^1.0.0",
     "nlcst-to-string": "^3.0.0",
     "unified": "^10.0.0",
-    "unist-util-is": "^5.0.0",
     "unist-util-position": "^4.0.0",
     "unist-util-visit": "^4.0.0"
   },
