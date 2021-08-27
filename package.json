@@ -1,6 +1,6 @@
 {
   "name": "retext-repeated-words",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "retext plugin to check for for repeated words",
   "license": "MIT",
   "keywords": [
