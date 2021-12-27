@@ -26,7 +26,8 @@ test('retextRepeatedWords()', (t) => {
         },
         fatal: false,
         actual: 'it it',
-        expected: ['it']
+        expected: ['it'],
+        url: 'https://github.com/retextjs/retext-repeated-words#readme'
       }
     ],
     'should emit messages'

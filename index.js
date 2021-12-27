@@ -9,6 +9,7 @@ import {visit, SKIP} from 'unist-util-visit'
 import {pointStart, pointEnd} from 'unist-util-position'
 
 const source = 'retext-repeated-words'
+const url = 'https://github.com/retextjs/retext-repeated-words#readme'
 
 // List of words that can legally occur twice.
 const list = new Set([
@@ -65,7 +66,8 @@ export default function retextRepeatedWords() {
                 actual: toString(
                   parent.children.slice(previous.index, index + 1)
                 ),
-                expected: [value]
+                expected: [value],
+                url
               }
             )
           }
