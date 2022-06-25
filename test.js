@@ -39,7 +39,7 @@ test('retextRepeatedWords()', (t) => {
       .processSync(
         'Well, it it doesn’t have to to be. Like a fish in the\nthe sea.'
       )
-      .messages.map((d) => String(d)),
+      .messages.map(String),
     [
       '1:7-1:12: Expected `it` once, not twice',
       '1:26-1:31: Expected `to` once, not twice',
@@ -52,7 +52,7 @@ test('retextRepeatedWords()', (t) => {
     retext()
       .use(retextRepeatedWords)
       .processSync('LIKE A FISH IN THE\nTHE SEA.')
-      .messages.map((d) => String(d)),
+      .messages.map(String),
     ['1:16-2:4: Expected `THE` once, not twice'],
     'should catch repeated words when uppercase'
   )

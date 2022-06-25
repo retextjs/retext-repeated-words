@@ -96,7 +96,7 @@ Current not ok phrase (`string`).
 
 ###### `message.expected`
 
-List of suggestions (`Array.<string>`, such as `['the']`).
+List of suggestions (`Array<string>`, such as `['the']`).
 
 ## Related
 
