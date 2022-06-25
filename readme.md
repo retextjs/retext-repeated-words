@@ -77,8 +77,6 @@ import retextEnglish from 'retext-english'
 import retextStringify from 'retext-stringify'
 import retextRepeatedWords from 'retext-repeated-words'
 
-const file = readSync('example.txt')
-
 const file = await unified()
   .use(retextEnglish)
   .use(retextRepeatedWords)
