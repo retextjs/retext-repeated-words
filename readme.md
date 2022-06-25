@@ -8,32 +8,69 @@
 [![Backers][backers-badge]][collective]
 [![Chat][chat-badge]][chat]
 
-[**retext**][retext] plugin to check for ~~`for`~~ repeated words.
+**[retext][]** plugin to check for ~~`for`~~ repeated words.
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`unified().use(retextRepeatedWords)`](#unifieduseretextrepeatedwords)
+*   [Messages](#messages)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Related](#related)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package is a [unified][] ([retext][]) plugin to check for repeated words.
+For example, `like like` this.
+
+## When should I use this?
+
+You can opt-into this plugin when you’re dealing with content that might contain
+grammar mistakes, and have authors that can fix that content.
 
 ## Install
 
-This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
-Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
-
-[npm][]:
+This package is [ESM only][esm].
+In Node.js (version 12.20+, 14.14+, 16.0+, or 18.0+), install with [npm][]:
 
 ```sh
 npm install retext-repeated-words
 ```
 
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import retextRepeatedWords from 'https://esm.sh/retext-repeated-words@4'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import retextRepeatedWords from 'https://esm.sh/retext-repeated-words@4?bundle'
+</script>
+```
+
 ## Use
 
-Say we have the following file, `example.txt`:
+Say our document `example.txt` contains:
 
 ```txt
 Well, it it doesn’t have to to be. Like a fish in the
 the sea.
 ```
 
-…and our script, `example.js`, looks like this:
+…and our module `example.js` looks as follows:
 
 ```js
-import {readSync} from 'to-vfile'
+import {read} from 'to-vfile'
 import {reporter} from 'vfile-reporter'
 import {unified} from 'unified'
 import retextEnglish from 'retext-english'
@@ -42,17 +79,16 @@ import retextRepeatedWords from 'retext-repeated-words'
 
 const file = readSync('example.txt')
 
-unified()
+const file = await unified()
   .use(retextEnglish)
   .use(retextRepeatedWords)
   .use(retextStringify)
-  .process(file)
-  .then((file) => {
-    console.error(reporter(file))
-  })
+  .process(await read('example.txt'))
+
+console.error(reporter(file))
 ```
 
-Now, running `node example` yields:
+…now running `node example.js` yields:
 
 ```txt
 example.txt
@@ -72,15 +108,17 @@ The default export is `retextRepeatedWords`.
 
 Check for repeated words.
 
-*   Doesn’t warn for some words which *do* occur twice (`the best exhibition
+*   doesn’t warn for some words which *do* occur twice (`the best exhibition
     they had had since`)
-*   Doesn’t warn for initialisms (`D. D. will pop up with…`)
-*   Doesn’t warn for capitalised words (`Duran Duran…`)
+*   doesn’t warn for initialisms (`D. D. will pop up with…`)
+*   doesn’t warn for capitalised words (`Duran Duran…`)
 
-### Messages
+There are no options.
 
-Each message is emitted as a [`VFileMessage`][message] on `file`, with the
-following fields:
+## Messages
+
+Each message is emitted as a [`VFileMessage`][vfile-message] on `file`, with
+the following fields:
 
 ###### `message.source`
 
@@ -98,12 +136,24 @@ Current not ok phrase (`string`).
 
 List of suggestions (`Array<string>`, such as `['the']`).
 
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports no additional types.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 12.20+, 14.14+, 16.0+, and 18.0+.
+Our projects sometimes work with older versions, but this is not guaranteed.
+
 ## Related
 
 *   [`retext-indefinite-article`](https://github.com/retextjs/retext-indefinite-article)
-    — Check if indefinite articles are used correctly
+    — check if indefinite articles are used correctly
 *   [`retext-redundant-acronyms`](https://github.com/retextjs/retext-redundant-acronyms)
-    — Check for redundant acronyms
+    — check for redundant acronyms
 
 ## Contribute
 
@@ -149,18 +199,26 @@ abide by its terms.
 
 [npm]: https://docs.npmjs.com/cli/install
 
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[typescript]: https://www.typescriptlang.org
+
 [health]: https://github.com/retextjs/.github
 
-[contributing]: https://github.com/retextjs/.github/blob/HEAD/contributing.md
+[contributing]: https://github.com/retextjs/.github/blob/main/contributing.md
 
-[support]: https://github.com/retextjs/.github/blob/HEAD/support.md
+[support]: https://github.com/retextjs/.github/blob/main/support.md
 
-[coc]: https://github.com/retextjs/.github/blob/HEAD/code-of-conduct.md
+[coc]: https://github.com/retextjs/.github/blob/main/code-of-conduct.md
 
 [license]: license
 
 [author]: https://wooorm.com
 
+[unified]: https://github.com/unifiedjs/unified
+
 [retext]: https://github.com/retextjs/retext
 
-[message]: https://github.com/vfile/vfile-message
+[vfile-message]: https://github.com/vfile/vfile-message
