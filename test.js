@@ -51,6 +51,21 @@ test('retextRepeatedWords()', (t) => {
   t.deepEqual(
     retext()
       .use(retextRepeatedWords)
+      .processSync(
+        'Well, it it doesn’t have to to be. Like a fish in the\r\nthe sea.'
+      )
+      .messages.map(String),
+    [
+      '1:7-1:12: Expected `it` once, not twice',
+      '1:26-1:31: Expected `to` once, not twice',
+      '1:51-2:4: Expected `the` once, not twice'
+    ],
+    'should catch repeated words on Windows'
+  )
+
+  t.deepEqual(
+    retext()
+      .use(retextRepeatedWords)
       .processSync('LIKE A FISH IN THE\nTHE SEA.')
       .messages.map(String),
     ['1:16-2:4: Expected `THE` once, not twice'],
