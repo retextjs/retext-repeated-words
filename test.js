@@ -15,25 +15,27 @@ test('retextRepeatedWords()', async function (t) {
       .use(retextRepeatedWords)
       .process('Well, it it doesn’t have to be.')
 
-    assert.deepEqual(JSON.parse(JSON.stringify(file.messages)), [
+    assert.deepEqual(
+      JSON.parse(JSON.stringify({...file.messages[0], ancestors: []})),
       {
+        ancestors: [],
         column: 7,
         fatal: false,
-        message: 'Expected `it` once, not twice',
+        message: 'Unexpected repeated `it`, remove one occurrence',
         line: 1,
         name: '1:7-1:12',
         place: {
           start: {line: 1, column: 7, offset: 6},
           end: {line: 1, column: 12, offset: 11}
         },
-        reason: 'Expected `it` once, not twice',
+        reason: 'Unexpected repeated `it`, remove one occurrence',
         ruleId: 'it',
         source: 'retext-repeated-words',
         actual: 'it it',
         expected: ['it'],
         url: 'https://github.com/retextjs/retext-repeated-words#readme'
       }
-    ])
+    )
   })
 
   await t.test('should catch repeated words', async function () {
@@ -44,9 +46,9 @@ test('retextRepeatedWords()', async function (t) {
       )
 
     assert.deepEqual(file.messages.map(String), [
-      '1:7-1:12: Expected `it` once, not twice',
-      '1:26-1:31: Expected `to` once, not twice',
-      '1:51-2:4: Expected `the` once, not twice'
+      '1:7-1:12: Unexpected repeated `it`, remove one occurrence',
+      '1:26-1:31: Unexpected repeated `to`, remove one occurrence',
+      '1:51-2:4: Unexpected repeated `the`, remove one occurrence'
     ])
   })
 
@@ -56,7 +58,7 @@ test('retextRepeatedWords()', async function (t) {
       .process('LIKE A FISH IN THE\nTHE SEA.')
 
     assert.deepEqual(file.messages.map(String), [
-      '1:16-2:4: Expected `THE` once, not twice'
+      '1:16-2:4: Unexpected repeated `THE`, remove one occurrence'
     ])
   })
 
