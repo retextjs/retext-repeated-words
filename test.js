@@ -1,13 +1,14 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import {retext} from 'retext'
-import retextRepeatedWords from './index.js'
+import retextRepeatedWords from 'retext-repeated-words'
 
-test('retextRepeatedWords()', async function (t) {
+test('retextRepeatedWords', async function (t) {
   await t.test('should expose the public api', async function () {
-    assert.deepEqual(Object.keys(await import('./index.js')).sort(), [
-      'default'
-    ])
+    assert.deepEqual(
+      Object.keys(await import('retext-repeated-words')).sort(),
+      ['default']
+    )
   })
 
   await t.test('should emit a message w/ metadata', async function () {
