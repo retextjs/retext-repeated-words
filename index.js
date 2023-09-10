@@ -56,12 +56,16 @@ export default function retextRepeatedWords() {
             previous.value.toLowerCase() === value.toLowerCase() &&
             !ignore(value)
           ) {
+            const start = pointStart(previous.child)
+            const end = pointEnd(child)
+
             Object.assign(
-              file.message(
-                'Expected `' + value + '` once, not twice',
-                {start: pointStart(previous.child), end: pointEnd(child)},
-                [source, value.toLowerCase().replace(/\W+/g, '-')].join(':')
-              ),
+              file.message('Expected `' + value + '` once, not twice', {
+                /* c8 ignore next -- verbose to test */
+                place: start && end ? {start, end} : undefined,
+                ruleId: value.toLowerCase().replace(/\W+/g, '-'),
+                source
+              }),
               {
                 actual: toString(
                   parent.children.slice(previous.index, index + 1)

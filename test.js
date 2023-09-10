@@ -13,18 +13,18 @@ test('retextRepeatedWords()', (t) => {
     ),
     [
       {
-        name: '1:7-1:12',
-        message: 'Expected `it` once, not twice',
-        reason: 'Expected `it` once, not twice',
-        line: 1,
         column: 7,
-        source: 'retext-repeated-words',
-        ruleId: 'it',
-        position: {
+        fatal: false,
+        message: 'Expected `it` once, not twice',
+        line: 1,
+        name: '1:7-1:12',
+        place: {
           start: {line: 1, column: 7, offset: 6},
           end: {line: 1, column: 12, offset: 11}
         },
-        fatal: false,
+        reason: 'Expected `it` once, not twice',
+        ruleId: 'it',
+        source: 'retext-repeated-words',
         actual: 'it it',
         expected: ['it'],
         url: 'https://github.com/retextjs/retext-repeated-words#readme'
