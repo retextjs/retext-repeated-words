@@ -47,14 +47,14 @@ npm install retext-repeated-words
 In Deno with [`esm.sh`][esmsh]:
 
 ```js
-import retextRepeatedWords from 'https://esm.sh/retext-repeated-words@4'
+import retextRepeatedWords from 'https://esm.sh/retext-repeated-words@5'
 ```
 
 In browsers with [`esm.sh`][esmsh]:
 
 ```html
 <script type="module">
-  import retextRepeatedWords from 'https://esm.sh/retext-repeated-words@4?bundle'
+  import retextRepeatedWords from 'https://esm.sh/retext-repeated-words@5?bundle'
 </script>
 ```
 
